@@ -48,7 +48,7 @@ The feature extraction recipe is defined in `extract_six()` in the notebook (cel
 ### 3. Run
 Open `arousal-index.ipynb` and run all cells top to bottom. On the fast path (using the shipped CSVs) it completes in well under a minute and reproduces: within-dataset R² = 0.29, cross-dataset transfer Spearman = 0.77, the anchor ladder, and the feature-effect figure.
 
-You can also run it in the cloud: [(https://www.kaggle.com/code/connerofarrell/arousal-index)].
+You can also run it in the cloud: https://www.kaggle.com/code/connerofarrell/arousal-index.
 
 ### Scoring your own audio
 After running the notebook, the `score_arousal()` function scores any audio file 0–11:
