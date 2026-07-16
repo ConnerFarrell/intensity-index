@@ -2,7 +2,7 @@
 
 **An interpretable, calibrated, cross-dataset model of musical arousal.**
 
-This repository accompanies the paper *"[INSERT PAPER TITLE]"* ([INSERT arXiv LINK once posted]). It contains a compact, fully interpretable model that predicts the **arousal** (felt activation/energy) a listener experiences from a piece of music, on a calibrated 0–11 scale, from six named acoustic features. The headline result: a **decorrelated six-feature model transfers across datasets substantially better (Spearman 0.77) than a twelve-feature model using the same underlying features (Spearman 0.60)** — and spline and gradient-boosted variants of the same six features fit better in-corpus while transferring worse still (0.49, 0.40). In the reverse direction (train PMEmo → test DEAM) capacity again never helps: spline ties linear (ρ ≈ 0.59) and boosting drops to 0.52. Across both directions, added capacity never improved transfer — and severely harmed it when training on the broader corpus. Resolving collinearity and restraining capacity improved both interpretability *and* cross-corpus generalization.
+This repository accompanies a paper in preparation for ICASSP 2027 (draft complete; preprint link forthcoming). It contains a compact, fully interpretable model that predicts the **arousal** (felt activation/energy) a listener experiences from a piece of music, on a calibrated 0–11 scale, from six named acoustic features. The headline result: a **decorrelated six-feature model transfers across datasets substantially better (Spearman 0.77) than a twelve-feature model using the same underlying features (Spearman 0.60)** — and spline and gradient-boosted variants of the same six features fit better in-corpus while transferring worse still (0.49, 0.40). In the reverse direction (train PMEmo → test DEAM) capacity again never helps: spline ties linear (ρ ≈ 0.59) and boosting drops to 0.52. Across both directions, added capacity never improved transfer — and severely harmed it when training on the broader corpus. Resolving collinearity and restraining capacity improved both interpretability *and* cross-corpus generalization.
 
 > **A note on terminology.** This repository is the umbrella for a research program targeting *musical intensity*. Its first model (this work) honestly measures **arousal** as operationalized by human listener ratings — a related but distinct construct that includes production factors such as loudness and mastering. Work on *intensity* proper (which isolates sonic aggression from production) is future work. Throughout, "arousal" means what the model measures.
 
@@ -16,7 +16,7 @@ This repository accompanies the paper *"[INSERT PAPER TITLE]"* ([INSERT arXiv LI
 | Full 12-feature linear (reference) | 0.42 | 0.60 |
 | Black-box, 260 features (ceiling) | 0.57 | — |
 
-The interpretable model is the *least* accurate within a single dataset and generalizes *far better* than every higher-capacity alternative — added capacity partly memorizes dataset-specific structure, which the transfer test exposes. Selecting a model by within-dataset accuracy would pick the wrong one. Reverse direction (train PMEmo → test DEAM): linear ρ = 0.59, spline 0.59, boosted 0.52 — capacity never helps in either direction; the severe penalty is specific to training on the heterogeneous corpus.
+The interpretable model is the *least* accurate within a single dataset and generalizes *far better* than every higher-capacity alternative — added capacity partly memorizes dataset-specific structure, which the transfer test exposes. Selecting a model by within-dataset accuracy would pick the wrong one. Reverse direction (train PMEmo → test DEAM): linear ρ = 0.59, spline 0.59, boosted 0.52 — capacity never helps in either direction; the severe penalty is specific to training on the heterogeneous corpus. (The black-box row shows no transfer number because the ~260 openSMILE features ship with DEAM only — PMEmo has no equivalent feature set, so that transfer cannot be computed under this repo's identical-pipeline rule; the black-box model serves as a within-dataset ceiling only.)
 
 ## What's here
 
@@ -50,8 +50,6 @@ The feature extraction recipe is defined in `extract_six()` in the notebook (cel
 ### 3. Run
 Open `arousal-index.ipynb` and run all cells top to bottom. On the fast path (using the shipped CSVs) it completes in well under a minute and reproduces: within-dataset R² = 0.29, cross-dataset transfer Spearman = 0.77, the anchor ladder, and the feature-effect figure.
 
-You can also run it in the cloud: https://www.kaggle.com/code/connerofarrell/arousal-index.
-
 ### Scoring your own audio
 After running the notebook, the `score_arousal()` function scores any audio file 0–11:
 ```python
@@ -66,14 +64,11 @@ Six interpretable acoustic features — loudness (RMS), spectral brightness (cen
 DEAM and PMEmo are the property of their respective creators and are used here for non-commercial research under their stated licenses; see the linked dataset pages. The pre-extracted feature CSVs in this repository are derived summary statistics released to support reproducibility.
 
 **Please cite the original datasets** in any derivative work:
-- DEAM: Aljanaki, A., Yang, Y.-H., & Soleymani, M. (2017). *Developing a benchmark for emotional analysis of music.* PLOS ONE. [verify full citation]
-- PMEmo: Zhang, K., Zhang, H., Li, S., Yang, C., & Sun, L. (2018). *The PMEmo dataset for music emotion recognition.* ICMR. [verify full citation]
+- DEAM: Aljanaki, A., Yang, Y.-H., & Soleymani, M. (2017). *Developing a benchmark for emotional analysis of music.* PLOS ONE.
+- PMEmo: Zhang, K., Zhang, H., Li, S., Yang, C., & Sun, L. (2018). *The PMEmo dataset for music emotion recognition.* ICMR.
 
 ## Citation
-If you use this work, please cite:
-```
-[INSERT BibTeX once the paper is finalized/posted]
-```
+Citation details (BibTeX) will be added when the preprint is posted.
 
 ## License
-Code in this repository: [INSERT — MIT recommended]. Derived feature data: released for non-commercial research consistent with the source datasets' licenses.
+Code in this repository: MIT (see [LICENSE](LICENSE)). Derived feature data: released for non-commercial research consistent with the source datasets' licenses.
