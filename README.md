@@ -30,7 +30,7 @@ The interpretable model is the *least* accurate within a single dataset and gene
 └── README.md
 ```
 
-The two openSMILE feature tables used by the black-box reference (`deam_opensmile.csv`, `pmemo_opensmile.csv`, ~200 MB combined) exceed GitHub's file-size limits and are published separately as a Kaggle dataset: https://www.kaggle.com/datasets/connerofarrell/deam-and-pmemo-opensmile. The final notebook cell finds them automatically when that dataset is attached (or the CSVs are placed in the working directory), and otherwise re-extracts them from the source audio (~2.5 h; requires internet for `pip install opensmile`).
+The two openSMILE feature tables used by the black-box reference (`deam_opensmile.csv`, `pmemo_opensmile.csv`, ~300 MB combined) exceed GitHub's file-size limits and are published separately as a Kaggle dataset: https://www.kaggle.com/datasets/connerofarrell/deam-and-pmemo-opensmile. The final notebook cell finds them automatically when that dataset is attached (or the CSVs are placed in the working directory), and otherwise re-extracts them from the source audio (~2.5 h; requires internet for `pip install opensmile`).
 
 ## Reproducing the results
 
